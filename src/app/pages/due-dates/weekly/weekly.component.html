@@ -1,0 +1,38 @@
+
+<div fxLayout="row wrap" fxLayoutGap="20px" class="m-t-15" fxLayoutAlign="center" >
+  <mat-checkbox *ngFor="let list of daysArray" [value]="list.id" [(ngModel)]="selectDay">{{list.day}}</mat-checkbox>
+</div>
+<div fxLayoutWrap fxLayout="column" fxLayout.sm="row" [formGroup]="setFrequency"  fxLayout.gt-sm="row" fxLayoutGap="15px" class="m-t-15"  >
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Starts From</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="startsBy" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="setFrequency.controls.startsBy.errors?.required">Starts From is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Ends By</mat-label>
+    <input matInput [matDatepicker]="picker1" formControlName="endsBy" required>
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+    <mat-error *ngIf="setFrequency.controls.endsBy.errors?.required">Ends By is required</mat-error>
+  </mat-form-field>
+
+  <button mat-mini-fab color="primary" type="submit" class="m-t-10" (click)="getResult()">
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+</div>
+<div fxLayoutWrap fxLayout="column" fxLayout.sm="row" fxLayout.gt-sm="row" fxLayoutGap="15px" class="m-t-15"  >
+  <div fxFlex="50">
+    <h3>Due Dates <em>(Except Weekly off and Holidays)</em></h3>
+    <p *ngIf="days.length > 0"><span *ngFor="let list of days; let i = index"> {{list}} <span *ngIf="(i +1) != days.length">,</span></span> </p>
+    <p *ngIf="days.length == 0"><em>No data Found</em></p>
+  </div>
+  <div fxFlex="50">
+    <h3>Weekly Off <em>(Sat & Sun)</em></h3>
+    <p *ngIf="weekOff.length > 0"><span *ngFor="let list of weekOff; let i = index"> {{list}} <span *ngIf="(i +1) != weekOff.length">,</span></span> </p>
+    <p *ngIf="weekOff.length == 0"><em>No data Found</em></p>
+  </div>
+</div>

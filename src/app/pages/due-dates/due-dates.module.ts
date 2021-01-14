@@ -1,10 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule } from '@angular/core';
+import {CommonModule } from '@angular/common';
 import {DueDatesComponent} from './due-dates.component';
 import {RouterModule} from '@angular/router';
-import { DailyComponent } from './daily/daily.component';
+import {DailyComponent } from './daily/daily.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatCardModule} from '@angular/material/card';
+import {FlexLayoutModule } from '@angular/flex-layout';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatNativeDateModule} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DatePipe } from '@angular/common';
+import {MatListModule} from '@angular/material/list';
+import { WeeklyComponent } from './weekly/weekly.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 export const routes = [
   { path: '', component: DueDatesComponent, pathMatch: 'full' }
@@ -12,13 +25,28 @@ export const routes = [
 @NgModule({
   declarations: [
     DueDatesComponent,
-    DailyComponent
+    DailyComponent,
+    WeeklyComponent
   ],
   imports: [
     CommonModule,
     MatTabsModule,
     FlexLayoutModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatListModule,
+    MatDividerModule,
+    FormsModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class DueDatesModule { }
