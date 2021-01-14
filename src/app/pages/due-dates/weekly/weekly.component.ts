@@ -10,22 +10,18 @@ import {DatePipe} from "@angular/common";
 export class WeeklyComponent implements OnInit {
   public setFrequency: FormGroup;
   public days: any;
-  public weekOff: any;
-  public selectDay: any;
-
-
   public daysArray = [
-    {day: 'Mon', id: 1},
-    {day: 'Tue', id: 2},
-    {day: 'Wed', id: 3},
-    {day: 'Thu', id: 4},
-    {day: 'Fri', id: 5},
-    {day: 'Sat', id: 6},
-    {day: 'Sun', id: 0},
-    ];
+    {day: 'Mon', id: 1, checked: false},
+    {day: 'Tue', id: 2, checked: false},
+    {day: 'Wed', id: 3, checked: false},
+    {day: 'Thu', id: 4, checked: false},
+    {day: 'Fri', id: 5, checked: false},
+    {day: 'Sat', id: 6, checked: false},
+    {day: 'Sun', id: 0, checked: false},
+  ];
+
   constructor(public fb: FormBuilder, public datePipe: DatePipe) {
     this.days = [];
-    this.weekOff = [];
     this.setFrequency = this.fb.group({
       startsBy: ['', Validators.required],
       endsBy: ['', Validators.required]
@@ -35,18 +31,26 @@ export class WeeklyComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeDay(event) {
+    this.setFrequency.reset();
+    this.days = [];
+    if (event.checked) {
+      console.log(this.daysArray);
+    }
+  }
   getResult() {
     if (this.setFrequency.valid) {
+
       this.days = [];
-      this.weekOff = [];
+
       for (let d = this.setFrequency.controls.startsBy.value; d <= this.setFrequency.controls.endsBy.value; d.setDate(d.getDate() + 1)) {
-        if (d.getDay() != 0 && d.getDay() != 6) {  // 0 is Sunday and 6 is Saturday Weekly off
-          this.days.push(this.datePipe.transform(d, 'EEE-MM-yyyy'));
-        } else {
-          this.weekOff.push(this.datePipe.transform(d, 'EEE-MM-yyyy'));
+        for (let j = 0; j < this.daysArray.length; j++) {
+          if (d.getDay() == this.daysArray[j].id && this.daysArray[j].checked) {
+            this.days.push(this.datePipe.transform(d, 'dd-MM-yyyy'));
+          }
         }
       }
     }
-  }
 
+  }
 }

@@ -37,9 +37,9 @@ export class DailyComponent implements OnInit {
       this.weekOff = [];
       for (let d = this.setFrequency.controls.startsBy.value; d <= this.setFrequency.controls.endsBy.value; d.setDate(d.getDate() + 1)) {
         if (d.getDay() != 0 && d.getDay() != 6) {  // 0 is Sunday and 6 is Saturday Weekly off
-          this.days.push(this.datePipe.transform(d, 'EEE-MM-yyyy'));
+          this.days.push(this.datePipe.transform(d, 'dd-MM-yyyy'));
         } else {
-          this.weekOff.push(this.datePipe.transform(d, 'EEE-MM-yyyy'));
+          this.weekOff.push(this.datePipe.transform(d, 'dd-MM-yyyy'));
         }
       }
 

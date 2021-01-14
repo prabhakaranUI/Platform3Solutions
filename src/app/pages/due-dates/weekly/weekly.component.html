@@ -1,6 +1,6 @@
 
 <div fxLayout="row wrap" fxLayoutGap="20px" class="m-t-15" fxLayoutAlign="center" >
-  <mat-checkbox *ngFor="let list of daysArray" [value]="list.id" [(ngModel)]="selectDay">{{list.day}}</mat-checkbox>
+  <mat-checkbox *ngFor="let list of daysArray" [(ngModel)]="list.checked" (change)="changeDay($event)">{{list.day}}</mat-checkbox>
 </div>
 <div fxLayoutWrap fxLayout="column" fxLayout.sm="row" [formGroup]="setFrequency"  fxLayout.gt-sm="row" fxLayoutGap="15px" class="m-t-15"  >
 
@@ -26,13 +26,8 @@
 </div>
 <div fxLayoutWrap fxLayout="column" fxLayout.sm="row" fxLayout.gt-sm="row" fxLayoutGap="15px" class="m-t-15"  >
   <div fxFlex="50">
-    <h3>Due Dates <em>(Except Weekly off and Holidays)</em></h3>
+    <h3>Due Dates</h3>
     <p *ngIf="days.length > 0"><span *ngFor="let list of days; let i = index"> {{list}} <span *ngIf="(i +1) != days.length">,</span></span> </p>
     <p *ngIf="days.length == 0"><em>No data Found</em></p>
-  </div>
-  <div fxFlex="50">
-    <h3>Weekly Off <em>(Sat & Sun)</em></h3>
-    <p *ngIf="weekOff.length > 0"><span *ngFor="let list of weekOff; let i = index"> {{list}} <span *ngIf="(i +1) != weekOff.length">,</span></span> </p>
-    <p *ngIf="weekOff.length == 0"><em>No data Found</em></p>
   </div>
 </div>
