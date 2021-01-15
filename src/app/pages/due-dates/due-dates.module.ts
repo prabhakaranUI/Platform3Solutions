@@ -17,6 +17,9 @@ import {MatListModule} from '@angular/material/list';
 import { WeeklyComponent } from './weekly/weekly.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDividerModule} from '@angular/material/divider';
+import { MonthlyComponent } from './monthly/monthly.component';
+import { YearlyComponent } from './yearly/yearly.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 export const routes = [
@@ -26,7 +29,9 @@ export const routes = [
   declarations: [
     DueDatesComponent,
     DailyComponent,
-    WeeklyComponent
+    WeeklyComponent,
+    MonthlyComponent,
+    YearlyComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +48,7 @@ export const routes = [
     MatListModule,
     MatDividerModule,
     FormsModule,
+    MatRadioModule,
     RouterModule.forChild(routes)
   ],
   providers: [

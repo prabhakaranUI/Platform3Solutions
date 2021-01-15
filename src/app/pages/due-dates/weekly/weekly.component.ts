@@ -34,9 +34,6 @@ export class WeeklyComponent implements OnInit {
   changeDay(event) {
     this.setFrequency.reset();
     this.days = [];
-    if (event.checked) {
-      console.log(this.daysArray);
-    }
   }
   getResult() {
     if (this.setFrequency.valid) {
