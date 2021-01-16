@@ -22,7 +22,7 @@
 </div>
 <div fxLayoutWrap fxLayout="column" fxLayout.sm="row" fxLayout.gt-sm="row" fxLayoutGap="15px" class="m-t-15"  >
 <div fxFlex="50">
-  <h3>Due Dates <em>(Except Weekly off and Holidays)</em></h3>
+  <h3>Due Dates <em>(Except Weekly off)</em></h3>
   <p *ngIf="days.length > 0"><span *ngFor="let list of days; let i = index"> {{list}} <span *ngIf="(i +1) != days.length">,</span></span> </p>
   <p *ngIf="days.length == 0"><em>No data Found</em></p>
 </div>

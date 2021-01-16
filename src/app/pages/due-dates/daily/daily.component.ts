@@ -9,10 +9,8 @@ import * as moment from 'moment';
 })
 export class DailyComponent implements OnInit {
   public setFrequency: FormGroup;
-  public myFormattedDate: any;
   public days: any;
   public weekOff: any;
-  public myFormattedDate1: any;
   constructor(public fb: FormBuilder, public datePipe: DatePipe) {
     this.days = [];
     this.weekOff = [];
@@ -20,6 +18,7 @@ export class DailyComponent implements OnInit {
       startsBy: ['', Validators.required],
       endsBy: ['', Validators.required]
     });
+
   }
 
   ngOnInit() {
@@ -28,11 +27,6 @@ export class DailyComponent implements OnInit {
   }
   getResult() {
     if (this.setFrequency.valid) {
-      // this.myFormattedDate = moment(this.setFrequency.controls.startsBy.value, 'dddd');
-      // this.myFormattedDate1 = moment(this.setFrequency.controls.endsBy.value, 'MM/dd/yyyy');
-      // console.log(this.myFormattedDate1.diff(this.myFormattedDate, 'days'));
-
-
       this.days = [];
       this.weekOff = [];
       for (let d = this.setFrequency.controls.startsBy.value; d <= this.setFrequency.controls.endsBy.value; d.setDate(d.getDate() + 1)) {
@@ -42,9 +36,6 @@ export class DailyComponent implements OnInit {
           this.weekOff.push(this.datePipe.transform(d, 'dd-MM-yyyy'));
         }
       }
-
-      console.log(this.days, 'daysOfYear');
-      console.log(this.weekOff, 'weekOff');
     }
   }
 }
